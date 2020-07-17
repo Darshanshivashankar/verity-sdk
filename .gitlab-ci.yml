@@ -160,10 +160,9 @@ java-release:
     - aws s3 sync doc/_build s3://developer.evernym.com/java/$RELEASE_VERSION # upload javadoc to s3
   dependencies:
     - java-package
-  rules:
-    - if: '$CI_COMMIT_TAG =~ "^v\d+\.\d+\.\d+$"'
-      when: manual
-      allow_failure: true
+  only:
+    refs:
+      - tag@dev/verity/verity-sdk
 
 .python-common:
   before_script:
@@ -244,10 +243,9 @@ python-release:
 #    - aws s3 sync doc/_build s3://developer.evernym.com/python/$RELEASE_VERSION # upload javadoc to s3
   dependencies:
     - python-package
-  rules:
-    - if: '$CI_COMMIT_TAG =~ "^v\d+\.\d+\.\d+$"'
-      when: manual
-      allow_failure: true
+  only:
+    refs:
+      - tag@dev/verity/verity-sdk
 
 .nodejs-common:
   before_script:
@@ -316,7 +314,3 @@ nodejs-release:
   only:
     refs:
       - tag@dev/verity/verity-sdk
-#  rules:
-#    - if: '$CI_RUNNER_TAGS =~ "^v\d+\.\d+\.\d+$asdfasdfasdfasdfsdfsdfsdf"'
-#      when: manual
-#      allow_failure: true
