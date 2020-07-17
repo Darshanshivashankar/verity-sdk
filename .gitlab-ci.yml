@@ -164,7 +164,7 @@ java-release:
   allow_failure: true
   only:
     refs:
-      - tag@dev/verity/verity-sdk
+      - tags@dev/verity/verity-sdk
 
 .python-common:
   before_script:
@@ -249,7 +249,7 @@ python-release:
   allow_failure: true
   only:
     refs:
-      - tag@dev/verity/verity-sdk
+      - tags@dev/verity/verity-sdk
 
 .nodejs-common:
   before_script:
@@ -319,4 +319,4 @@ nodejs-release:
   allow_failure: true
   only:
     refs:
-      - tag@dev/verity/verity-sdk
+      - tags@dev/verity/verity-sdk
