@@ -6,7 +6,7 @@
 
   <groupId>com.evernym.verity</groupId>
   <artifactId>verity-sdk</artifactId>
-  <version>0.0.0-SNAPSHOT</version>
+  <version>0.4.0</version>
 
   <name>Verity SDK</name>
   <description>The official Java SDK for Evernym's Verity</description>
@@ -18,6 +18,14 @@
     <name>Evernym, Inc.</name>
     <url>https://www.evernym.com/products/</url>
   </organization>
+
+  <developers>
+    <developer>
+      <id>dfisher</id>
+      <name>Devin Fisher</name>
+      <email>devin.fisher@evernym.com</email>
+    </developer>
+  </developers>
 
   <licenses>
     <license>
@@ -37,9 +45,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <repository.id>cloudrepo</repository.id>
-    <repository.url>https://evernym.mycloudrepo.io/repositories/evernym-dev</repository.url>
-    <gpg.skip>true</gpg.skip>
   </properties>
 
   <profiles>
@@ -68,11 +73,30 @@
               <autoReleaseAfterClose>false</autoReleaseAfterClose>
             </configuration>
           </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <gpgArguments> <!-- Not totally sure why this is needed but it stops gpg from launching prompt for passphrase -->
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
+              </gpgArguments>
+            </configuration>
+          </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
-
 
   <repositories>
     <repository>
@@ -194,32 +218,12 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <gpgArguments> <!-- Not totally sure why this is needed but it stops gpg from launching prompt for passphrase -->
-            <arg>--pinentry-mode</arg>
-            <arg>loopback</arg>
-          </gpgArguments>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
   <distributionManagement>
     <repository>
-      <id>${repository.id}</id> <!-- Must Match the Unique Identifier in settings.xml -->
+      <id>${repository.id}</id>
       <url>${repository.url}</url>
     </repository>
   </distributionManagement>

@@ -155,7 +155,7 @@ java-release:
     - gpg --batch --passphrase $OSSHR_GPG_PASSPHRASE --import $OSSRH_GPG_SIGNING_KEY
   script:
     - mvn versions:set -DnewVersion=$RELEASE_VERSION                          # set version to tagged version
-    - mvn deploy --settings ./settings.xml -DskipTests -P release             # deploy to sonatype OSSRH repo
+    - mvn clean deploy --settings ./settings.xml -DskipTests -P release             # deploy to sonatype OSSRH repo
     - mvn javadoc:javadoc                                                     # build javadoc
     - aws s3 sync doc/_build s3://developer.evernym.com/java/$RELEASE_VERSION # upload javadoc to s3
   dependencies:
