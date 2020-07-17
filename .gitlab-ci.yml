@@ -217,7 +217,6 @@ python-publish:
   extends:
     - .python-common
   script:
-    - cd sdk/python-sdk/
     - make upload
   dependencies:
     - python-package
@@ -253,6 +252,7 @@ python-release:
 .nodejs-common:
   before_script:
     - cd sdk/nodejs-sdk/
+    - pwd
     - npm version --no-git-tag-version $DEV_VERSION
 
 nodejs-test:

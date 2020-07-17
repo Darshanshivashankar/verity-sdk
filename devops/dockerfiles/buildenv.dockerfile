@@ -38,6 +38,7 @@ RUN python3 -m pip install \
     pylint-quotes==0.2.1 \
     aiohttp==3.5.4 \
     pytest-mock==1.11.2 \
+    pytest-asyncio==0.14.0 \
     twine
 
 # Set JAVA_HOME
