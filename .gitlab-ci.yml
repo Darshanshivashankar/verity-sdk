@@ -252,6 +252,7 @@ python-release:
 .nodejs-common:
   before_script:
     - cd sdk/nodejs-sdk/
+    - env
     - pwd
     - npm version --no-git-tag-version $DEV_VERSION
 
