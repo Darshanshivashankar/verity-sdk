@@ -311,6 +311,8 @@ nodejs-release:
     - npm publish                                                               # publish to npm
 #    - npm run doc-build                                                         # build doc
 #    - aws s3 sync doc/_build s3://developer.evernym.com/nodejs/$RELEASE_VERSION # upload javadoc to s3
+  when: manual
+  allow_failure: true
   only:
     refs:
       - tag@dev/verity/verity-sdk
