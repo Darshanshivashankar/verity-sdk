@@ -162,6 +162,8 @@ java-release:
     - java-package
   rules:
     - if: '$CI_COMMIT_TAG =~ "^v\d+\.\d+\.\d+$"'
+      when: manual
+      allow_failure: true
 
 .python-common:
   before_script:
@@ -245,6 +247,8 @@ python-release:
     - python-package
   rules:
     - if: '$CI_COMMIT_TAG =~ "^v\d+\.\d+\.\d+$"'
+      when: manual
+      allow_failure: true
 
 .nodejs-common:
   before_script:
@@ -312,3 +316,5 @@ nodejs-release:
 #    - aws s3 sync doc/_build s3://developer.evernym.com/nodejs/$RELEASE_VERSION # upload javadoc to s3
   rules:
     - if: '$CI_COMMIT_TAG =~ "^v\d+\.\d+\.\d+$"'
+      when: manual
+      allow_failure: true
