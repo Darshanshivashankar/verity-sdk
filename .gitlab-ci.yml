@@ -316,4 +316,4 @@ nodejs-release:
   rules:
     - if: '$CI_RUNNER_TAGS =~ "^v\d+\.\d+\.\d+$asdfasdfasdfasdfsdfsdfsdf"'
       when: manual
-      allow_failure: true
+#      allow_failure: true
