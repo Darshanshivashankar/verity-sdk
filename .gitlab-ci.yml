@@ -252,8 +252,6 @@ python-release:
 .nodejs-common:
   before_script:
     - cd sdk/nodejs-sdk/
-    - env
-    - pwd
     - npm version --no-git-tag-version $DEV_VERSION
 
 nodejs-test:
@@ -265,7 +263,6 @@ nodejs-test:
   extends:
     - .nodejs-common
   script:
-    - curl registry.npmjs.org
     - npm install
     - npm run lint # Node.js linting
     - npm test # Node.js testing
