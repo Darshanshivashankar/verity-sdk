@@ -5,6 +5,7 @@
       - branches
       - master
       - push
+      - tags
   tags:
     - docker-machine
     - micro
